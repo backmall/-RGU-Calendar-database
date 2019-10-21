@@ -1,0 +1,22 @@
+
+{% extends "events/base.html" %}
+  {% block content %}
+
+
+   <div class="row my-auto">
+    {% for event in events %}
+        <div class="col-sm-4 content-section block">
+        <span>
+        <img class="img-fluid mx-auto" alt="img2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQINPJb_U_DUUzwI9zMOmAPibbzKebzBZg_jhCqpniO3qU8oPjdR6fitu28">
+        <h2 class="">{{ event.event_name }}</h2>
+        </span>
+        <small class="text-muted">{{ event.date_published | date:"d F Y  - H:i" }}</small>
+        <p class="article-content block"> <b>Date:</b> {{ event.datetime_event }} </p>
+        <p class="article-content block"> <b>Event location: </b> {{ event.location }}</p>
+        <!-- <p class="article-content block"> <b>Event description</b> <br> {{ event.description }}</p>  -->
+        <a href="{% url 'event_detail' event.id %}"  class="btn btn-secondary btn-sm">View Event</a>
+      </div>  
+  {% endfor %}
+  </div>
+
+{% endblock content %}

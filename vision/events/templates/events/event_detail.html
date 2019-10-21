@@ -1,0 +1,14 @@
+{% extends "events/base.html" %}
+{% block content %}      
+<!-- DetailView expects objects named <object> -->
+	<div class="row">
+		<article class="media content-section col-lg-8 block">
+			<img class="article-img rounded-circle" src="{{ object.author.profile.image.url }}">
+		<div class="media-body">
+		    <h2 class="article-title">{{ event.author }}</h2>
+		    <p class="article-content block"> {{ event.location }}</p>
+  			<p class="article-content block" > {{ event.description }}</p>
+		  </div>
+		</article>
+	</div>	
+{% endblock content %}
