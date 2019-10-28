@@ -25,8 +25,8 @@
   </head>
 
   <body>
-    <div class="container">
-      <div class="row pull-left">
+  	<div class="row">
+      <div class="col">
             <div id="img-circle" class="">
                 <img class="article-img rounded-circle" src="../media/{{ user.profile.image }}" alt="{{ user.username }} profile_picture">
        		 </div> <!-- end userImage div -->
@@ -64,7 +64,7 @@
 		</div>
 	</div>
           
-​ 		<div class="row pull-right">
+​ 		<div class="col">
               <div id="userSkillList" class="content-section-fluid pull-right">
                 <h1>Skill List</h1>
                 <ul>
@@ -77,7 +77,7 @@
               <div id="userAttendedEvents" class="">
                 <h1>Attended Events</h1>
                 {% for event in events %}
-                <div id="evetnList" class="">
+                <div id="evetnList">
                   <div id="eventCard" class="card">
                     <div id="eventCardBody" class="card-body">
                       <img id="eventImage" src="{{ MEDIA_URL }} / imagePlaceHolder.jpg" alt="event placeholder image">
@@ -110,7 +110,7 @@
                 </div> <!-- end eventList div -->
               </div> <!-- end userAttendedEvents div -->
             </div>
-        </div> <!-- end userInfo div -->
+        </div>
   </body>
 </html>
 
