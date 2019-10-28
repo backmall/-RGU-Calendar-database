@@ -1,45 +1,117 @@
 {% extends "events/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
 	
-	<div class="row">
-		<img class="article-img rounded-circle" src="{{ MEDIA_ROOT }}{{ user.profile.image }}" alt="{{ user.username }} profile_picture">
-		<!-- Serving files uploaded by a User during development - django tuts -->
-		<div class="column">
-			<div class="column article-section">
-				<p>Username: {{ user.username }}</p>
-				<p>Email: {{ user.email }}</p>
-				<p>ID: {{ user.id }}</p>
-			</div>
+
+<!-- THIS IS THE PROFILE PAGE -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Staff Profile</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'events/main.css' %}"/>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row pull-left">
+            <div id="img-circle" class="">
+                <img class="article-img rounded-circle" src="../media/{{ user.profile.image }}" alt="{{ user.username }} profile_picture">
+       		 </div> <!-- end userImage div -->
+​    	<div class="col content-section">
+
+        <div class="col-lg">
+          <div id="userInfoCard" class="card">
+            <div id="userInfoCardBody" class="card-body">
+              <div id="genUserInfo">
+                <h1>General Information</h1>
+                <div class="row">
+	                <ul>
+	                	<li id="staffMail"> Email: {{ user.email }}</li>
+	                	<li id="staffMail"> Name: {{ user.username }}</li>
+	                	<li id="staffMail"> Staff ID: rgu_s_ {{ user.id }}</li>
+	                </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+              <hr/>
+
+               <form method="POST" enctype="multipart/form-data"> 
+				{% csrf_token %}
+				<fieldset class="form-group">
+					<legend class="border-bottom mb-6">Edit Profile Info</legend>
+					{{ user_form | crispy }}
+					{{ profile_form | crispy }}
+				</fieldset>
+					<div class="form-group">
+						<button class="btn btn-outline-info" type="submit">Save Changes</button>
+					</div>
+			</form>
+		  </div>
 		</div>
 	</div>
-	<br>
-	<div class="row content-section">
-		<form method="POST" enctype="multipart/form-data"> 
-			{% csrf_token %}
-			<fieldset class="form-group">
-				<legend class="border-bottom mb-6">Profile Info</legend>
-				{{ user_form | crispy }}
-				{{ profile_form | crispy }}
-			</fieldset>
-			<div class="form-group">
-				<button class="btn btn-outline-info" type="submit">Save Changes</button>
-			</div>
-		</form>
+          
+​ 		<div class="row pull-right">
+              <div id="userSkillList" class="content-section-fluid pull-right">
+                <h1>Skill List</h1>
+                <ul>
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta ornare nulla, eu ultricies dolor ultricies vel. Pellentesque id tincidunt justo. Vestibulum ut arcu at justo aliquam ultrices inf eu velit. Donec eget urna odio. Sed interdum risus vel tortor aliquet congue.</li>
+                </ul>
+              </div> <!-- end userSkillList div -->
+​
+              <hr/>
+​
+              <div id="userAttendedEvents" class="">
+                <h1>Attended Events</h1>
+                {% for event in events %}
+                <div id="evetnList" class="">
+                  <div id="eventCard" class="card">
+                    <div id="eventCardBody" class="card-body">
+                      <img id="eventImage" src="{{ MEDIA_URL }} / imagePlaceHolder.jpg" alt="event placeholder image">
+                      <div id="eventBrief">
+                        <h3>{{ event.event_name }}</h3>
+                        <p>{{ event.description }}</p>
+                      </div>
+                    </div>
+                  </div>
+​				{% endfor %}
+                  <div id="eventCard" class="card">
+                    <div id="eventCardBody" class="card-body">
+                      <img id="eventImage" src="vision/imagePlaceHolder.jpg" alt="event placeholder image">
+                      <div id="eventBrief">
+                        <h3>Name of the event</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+                    </div>
+                  </div>
+​
+                  <div id="eventCard" class="card">
+                    <div id="eventCardBody" class="card-body">
+                      <img id="eventImage" src="imagePlaceHolder.jpg" alt="event placeholder image">
+                      <div id="eventBrief">
+                        <h3>Name of the event</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- end eventList div -->
+              </div> <!-- end userAttendedEvents div -->
+            </div>
+        </div> <!-- end userInfo div -->
+  </body>
+</html>
 
-
-		<div class="content-section col">
-		<h4>Author's events: </h4>
-		{% for event in events %}	
-				<article class="media content-section">
-				  <div class="media-body">
-				   <h2><a class="article-title" href="#">{{ event.event_name }}</a></h2>
-				      <small class="text-muted">{{ event.date_posted|date:"F d, Y" }}</small>
-				    <p class="article-content">{{ event.description }}</p>
-				  </div>
-				</article>
-		{% endfor %}
-		</div>
-
-	</div>	
 {% endblock content %}

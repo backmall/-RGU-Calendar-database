@@ -1,92 +1,69 @@
 body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
+  background-color: rgb(112, 37, 117)
 }
 
-h1, h2, h3 {
-  color: #444444
-}
-
-.site-header .navbar-nav .nav-link {
-  color: #eeeeee;
-}
-.site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
-}
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
-}
-.bg-steel {
-  background-color: #823AAF;
-}
-
-.footer{
-  background-color: #823AAF;
-  color: #eeeeee;
-  text-align: center;
-  margin-top: 5rem;
-}
-
-​
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-
 /* this css is for the staff members image */
 #stockImage {
   max-width: 100%;
   max-height: 100%;
 }
-​
+
 #userImageCard {
   margin-top: 15px;
   margin-left: -70px;
 }
-​
+
 #userImageCardBody {
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
 }
-​
+
 /* this css is for the staff members general information */
-​
+
 #userInfoCard {
   margin-top: 15px;
   margin-right: -70px;
 }
-​
+
 #userInfoCardBody {
   overflow-y: scroll;
   height: 580px;
 }
-​
+
 #staffName {
-  float: lefts;
+  float: left;
   font-size: 25px;
 }
-​
+
 #staffId {
   float: left;
   font-size: 25px;
 }
-​
+
+#staffMail{
+  float: left;
+  font-size: 25px;
+}
+
 #eventCard {
   margin-bottom: 15px;
 }
-​
+
 #eventCardBody {
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
 }
-​
+
 #eventImage {
   float: left;
   max-width: 100%;
@@ -94,7 +71,7 @@ hr {
   width: 100px;
   height: 100px;
 }
-​
+
 #eventBrief {
   float: left;
   margin-left: 15px;
