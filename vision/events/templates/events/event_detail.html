@@ -5,10 +5,14 @@
 		<article class="media content-section col-lg-8 block">
 			<img class="article-img rounded-circle" src="{{ object.author.profile.image.url }}">
 		<div class="media-body">
-		    <h2 class="article-title">{{ event.author }}</h2>
-		    <p class="article-content block"> {{ event.location }}</p>
-  			<p class="article-content block" > {{ event.description }}</p>
-		  </div>
+        	<img class="img-fluid mx-auto" alt="img2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQINPJb_U_DUUzwI9zMOmAPibbzKebzBZg_jhCqpniO3qU8oPjdR6fitu28">
+	        <h2 class="">{{ event.event_name }}</h2>
+	        </span>
+	        <small class="text-muted">{{ event.date_published | date:"d F Y  - H:i" }}</small>
+	        <p class="article-content block"> <b>Date:</b> {{ event.datetime_event }} </p>
+	        <p class="article-content block"> <b>Event location: </b> {{ event.location }}</p>
+	        <p class="article-content block"> <b>Event author: </b> {{ event.author }}</p>
+	    </div>
 		</article>
 	</div>	
 {% endblock content %}

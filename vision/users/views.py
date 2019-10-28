@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
+from .forms import UserUpdateForm, UserRegisterForm, ProfileUpdateForm
 from events.models import Event
-from .models import User
-
 
 # Create your views here.
 
@@ -26,3 +25,29 @@ def register(request):
 		messages.error(request, f'Something went wrong, try again!')
 	# passing in form as context - ditionary of {variable form: newely created form UserCreationForm()}
 	return render(request, 'users/register.html', {'form': form})
+
+#personalising site with Profile access
+@login_required
+def profile(request):
+	# UPDATING USER PROFILE BELOW - validation, POST and FIELD request
+	if request.method == 'POST':
+		user_form = UserUpdateForm(request.POST, instance=request.user)
+		profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+		if user_form.is_valid() and profile_form.is_valid():
+			user_form.save()
+			profile_form.save()
+			# some user feedback same as in UserRegistaraion
+			messages.success(request, f'Account updated!')
+			return redirect('profile')
+	else:
+		user_form = UserUpdateForm(instance=request.user)
+		profile_form = ProfileUpdateForm(instance=request.user.profile)
+
+	context = {
+		'events': Event.objects.filter(author=request.user),
+		'user_form': user_form,
+		'profile_form': profile_form,
+	}
+	return render(request, 'users/profile.html', context)
+

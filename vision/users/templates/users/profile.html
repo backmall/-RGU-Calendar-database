@@ -1,0 +1,45 @@
+{% extends "events/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+	
+	<div class="row">
+		<img class="article-img rounded-circle" src="{{ MEDIA_ROOT }}{{ user.profile.image }}" alt="{{ user.username }} profile_picture">
+		<!-- Serving files uploaded by a User during development - django tuts -->
+		<div class="column">
+			<div class="column article-section">
+				<p>Username: {{ user.username }}</p>
+				<p>Email: {{ user.email }}</p>
+				<p>ID: {{ user.id }}</p>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row content-section">
+		<form method="POST" enctype="multipart/form-data"> 
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-6">Profile Info</legend>
+				{{ user_form | crispy }}
+				{{ profile_form | crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-info" type="submit">Save Changes</button>
+			</div>
+		</form>
+
+
+		<div class="content-section col">
+		<h4>Author's events: </h4>
+		{% for event in events %}	
+				<article class="media content-section">
+				  <div class="media-body">
+				   <h2><a class="article-title" href="#">{{ event.event_name }}</a></h2>
+				      <small class="text-muted">{{ event.date_posted|date:"F d, Y" }}</small>
+				    <p class="article-content">{{ event.description }}</p>
+				  </div>
+				</article>
+		{% endfor %}
+		</div>
+
+	</div>	
+{% endblock content %}

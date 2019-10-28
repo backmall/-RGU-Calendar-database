@@ -127,16 +127,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 
-STATIC_ROOT = ''
-
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = ( os.path.join('static'), )
+# specifying media folder path for event / staff pictures
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = 'media/'
+
+STATICFILES_DIRS = ( os.path.join('static'),)
 
 # change to bootstrap 4
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-# MEDIA_ROOT = PROJECT_PATH + '/media/'
 
 LOGIN_REDIRECT_URL = 'home-events'
 
