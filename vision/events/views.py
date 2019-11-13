@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, CreateView, DetailView
 from django.db import models
 
@@ -27,6 +28,7 @@ class EventListView(ListView):
 class EventDetailView(DetailView):
 	model = Event
 
+	@login_required
 	def event_detail(request, pk):
 		context = {
 			'events': Event.objects.filter(pk=pk)
@@ -41,7 +43,8 @@ class EventCreateView(LoginRequiredMixin, CreateView):
 		'datetime_event',
 		'description',
 		'location',
-		'author'
+		'author',
+		'image'
 	]
 	def form_valid(self, form):
 		form.instance.author = self.request.user

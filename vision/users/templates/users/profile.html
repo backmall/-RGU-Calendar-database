@@ -2,85 +2,64 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-	
 
-<!-- THIS IS THE PROFILE PAGE -->
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Staff Profile</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel = "stylesheet" type = "text/css" href = "{% static 'events/main.css' %}"/>
-
-  </head>
-
-  <body>
   	<div class="row">
-      <div class="col">
-            <div id="img-circle" class="">
-                <img class="article-img rounded-circle" src="../media/{{ user.profile.image }}" alt="{{ user.username }} profile_picture">
-       		 </div> <!-- end userImage div -->
-​    	<div class="col content-section">
 
-        <div class="col-lg">
-          <div id="userInfoCard" class="card">
-            <div id="userInfoCardBody" class="card-body">
-              <div id="genUserInfo">
-                <h1>General Information</h1>
-                <div class="row">
-	                <ul>
-	                	<li id="staffMail"> Email: {{ user.email }}</li>
-	                	<li id="staffMail"> Name: {{ user.username }}</li>
-	                	<li id="staffMail"> Staff ID: rgu_s_ {{ user.id }}</li>
-	                </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-              <hr/>
+        <div class="col mx-5">
 
-               <form method="POST" enctype="multipart/form-data"> 
-				{% csrf_token %}
-				<fieldset class="form-group">
-					<legend class="border-bottom mb-6">Edit Profile Info</legend>
-					{{ user_form | crispy }}
-					{{ profile_form | crispy }}
-				</fieldset>
-					<div class="form-group">
-						<button class="btn btn-outline-info" type="submit">Save Changes</button>
+            <div class="card card-body">
+            	<div class="row pull-left">
+            		<div class="col">
+						<h1>General Information</h1>
+						<div class="img-fluid" width="150px" height="auto">
+							<img class="img" alt="{{ user.name }}" src="{{ user.profile.image.url }}">
+           				</div>
+						<ul>
+							<li> Email: {{ user.email }}</li>
+							<li> Name: {{ user.username }}</li>
+							<li> Staff ID: SID- {{ user.id }}</li>
+              			</ul>
+              		<hr>
+
+						<form method="POST" enctype="multipart/form-data"> 
+						{% csrf_token %}
+							<fieldset class="form-group">
+								<legend class="border-bottom mb-6">Edit Profile Info</legend>
+								{{ user_form | crispy }}
+								{{ profile_form | crispy }}
+							</fieldset>
+							<div class="form-group">
+								<button class="btn btn-outline-info" type="submit">Save Changes</button>
+							</div>
+						</form>
 					</div>
-			</form>
-		  </div>
-		</div>
+                </div> 
+
+        </div>
+
+	<hr>
+
+        <div class="container-fluid">
+
+			<h1>Skill List</h1>
+			<ul>
+				<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta ornare nulla, eu ultricies dolor ultricies vel. Pellentesque id tincidunt justo. Vestibulum ut arcu at justo aliquam ultrices inf eu velit. Donec eget urna odio. Sed interdum risus vel tortor aliquet congue.</li>
+			</ul>
+		</div> <!-- end userSkillList div -->
+
 	</div>
-          
-​ 		<div class="col">
-              <div id="userSkillList" class="content-section-fluid pull-right">
-                <h1>Skill List</h1>
-                <ul>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta ornare nulla, eu ultricies dolor ultricies vel. Pellentesque id tincidunt justo. Vestibulum ut arcu at justo aliquam ultrices inf eu velit. Donec eget urna odio. Sed interdum risus vel tortor aliquet congue.</li>
-                </ul>
-              </div> <!-- end userSkillList div -->
-​
-              <hr/>
-​
-              <div id="userAttendedEvents" class="">
+
+			<div class="col">
+
+		
+​				
+              <div class="container-fluid">
                 <h1>Attended Events</h1>
                 {% for event in events %}
                 <div id="evetnList">
                   <div id="eventCard" class="card">
                     <div id="eventCardBody" class="card-body">
-                      <img id="eventImage" src="{{ MEDIA_URL }} / imagePlaceHolder.jpg" alt="event placeholder image">
+                      <img class="img-fluid mx-auto" alt="{{ event.image.name }}" src="{{ event.image.url }}">
                       <div id="eventBrief">
                         <h3>{{ event.event_name }}</h3>
                         <p>{{ event.description }}</p>
@@ -88,30 +67,5 @@
                     </div>
                   </div>
 ​				{% endfor %}
-                  <div id="eventCard" class="card">
-                    <div id="eventCardBody" class="card-body">
-                      <img id="eventImage" src="vision/imagePlaceHolder.jpg" alt="event placeholder image">
-                      <div id="eventBrief">
-                        <h3>Name of the event</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                      </div>
-                    </div>
-                  </div>
-​
-                  <div id="eventCard" class="card">
-                    <div id="eventCardBody" class="card-body">
-                      <img id="eventImage" src="imagePlaceHolder.jpg" alt="event placeholder image">
-                      <div id="eventBrief">
-                        <h3>Name of the event</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div> <!-- end eventList div -->
-              </div> <!-- end userAttendedEvents div -->
-            </div>
-        </div>
-  </body>
-</html>
 
 {% endblock content %}

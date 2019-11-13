@@ -14,7 +14,7 @@ class Event(models.Model):
     description = models.TextField(null=False, verbose_name='Description')
     location = models.CharField(max_length=100, null=False)
     author = models.ForeignKey(User, on_delete = models.CASCADE)
-    image = models.ImageField(default='imagePlaceholder.jpg', upload_to='event_pics')
+    image = models.ImageField(default='RGU.jpg', upload_to='profile_pics')
 
 
     def was_published_recently(self):
