@@ -19,9 +19,9 @@ from datetime import datetime
 
 class Event(models.Model):
     event_name = models.CharField(max_length=50, null=False)
-    start_date = models.DateField('Event Begins', blank=False, default = timezone.now)
-    start_time = models.TimeField('Begins at', blank=False, default = timezone.now)
-    end_date = models.DateField('Event Ends', blank=False, default = timezone.now)
+    start_date = models.DateField('Event starts', blank=False, default = timezone.now)
+    start_time = models.TimeField('Time', blank=False, default = timezone.now)
+    end_date = models.DateField('Event ends', blank=False, default = timezone.now)
     end_time = models.TimeField('Ends at', blank=False, default = timezone.now)
     date_published = models.DateTimeField(default = timezone.now)
     description = models.TextField(null=False, verbose_name='Description')
