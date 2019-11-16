@@ -20,10 +20,14 @@
           <div class="card-body">
             <h4 class="card-title">{{ event.event_name }}</h4>
             <p class="card-text">{{ event.description }}</p>
-              <p class="card-text"><b>Date:</b> {{ event.datetime_event }} </p>
+            <!-- <p class="card-text">{{ event.date_published }}</p> -->
+
+               <p class="card-text"><b>Begins:</b> {{ event.start_date }} <br> <b> Time: </b>{{ event.start_time}} </p>
+               <hr>
+               <p class="card-text"><b>Ends:</b> {{ event.end_date }} <br> <b> Time: </b>{{ event.end_time}} </p>
           </div>
           <div class="card-footer">
-            <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">Find Out More!</a>
+            <a href="{% url 'event-detail' event.id %}" class="btn btn-primary">Find Out More!</a>
           </div>
         </div>
       </div>

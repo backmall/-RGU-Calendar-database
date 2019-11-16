@@ -1,0 +1,18 @@
+{% extends "events/base.html" %}
+{% block content %}
+<div class="container">
+	<h1>List of Staff Memebers</h1>
+	{% if user.is_staff %}
+	{% for user.objects in users %}
+	<div class="row">
+		<img class="article-img rounded-circle" src="{{ MEDIA_URL }}{{ user.profile.image }}" alt="{{ user.profile.username }} profile_picture">
+			<div class="container">
+				<p>Username: {{ user.username }}</p>
+				<p>Email: {{ user.email }}</p>
+				<p>StaffID - {{ user.id }}</p>
+			</div>
+	</div>
+	{% endfor %}
+	{% endif %}
+</div>
+{% endblock content %}

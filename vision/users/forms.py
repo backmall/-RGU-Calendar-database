@@ -23,11 +23,8 @@ class ProfileUpdateForm(forms.ModelForm):
 		model = Profile
 		fields = ['image']
 
-
-class EventUpdateForm(forms.ModelForm):
+class EventCreateForm(forms.ModelForm):
 	image = forms.ImageField()
-
 	class Meta:
 		model = Event
 		fields = ['image']
-

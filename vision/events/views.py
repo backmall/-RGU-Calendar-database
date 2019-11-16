@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, CreateView, DetailView
 from django.db import models
 
-
 from .models import Event
 from django.contrib.auth.models import User
 
@@ -22,30 +21,40 @@ class EventListView(ListView):
 	model = Event
 	template_name = 'events/base.html' # <app> /<model>_<viewtype>.html
 	context_object_name = 'event'
-	ordering = ['-datetime_event']
+	# queryset = Event.objects.order_by('-date_published')
+	ordering = ['-start_date']
 
 
 class EventDetailView(DetailView):
 	model = Event
 
-	@login_required
 	def event_detail(request, pk):
 		context = {
 			'events': Event.objects.filter(pk=pk)
 		}
-		return render(request, 'event_detail.html', context)
+		return render(request, 'event-detail.html', context)
+
 
 class EventCreateView(LoginRequiredMixin, CreateView):
 	model = Event
 
 	fields = [
 		'event_name', 
-		'datetime_event',
+		'start_date',
+		'start_time',
+		'end_date',
+		'end_time',
 		'description',
 		'location',
-		'author',
-		'image'
+		'image',
 	]
+
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super().form_valid(form)
+
+def staff(request):
+	context = {
+		'users': User.objects.all()
+	}
+	return render(request, 'users/staff.html',  context)
