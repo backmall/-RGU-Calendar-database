@@ -1,8 +1,12 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserUpdateForm, UserRegisterForm, ProfileUpdateForm
+from django.shortcuts import render, redirect
 from events.models import Event
+from .forms import UserUpdateForm, UserRegisterForm, ProfileUpdateForm
+# from django.views.generic import DetailView
+
+
 
 # Create your views here.
 
@@ -50,3 +54,15 @@ def profile(request):
 		'profile_form': profile_form,
 	}
 	return render(request, 'users/profile.html', context)
+
+
+# class ProfileDetailView(DetailView):
+# 	model = User
+# 	template_name = 'user_detail.html'
+
+# 	def get_user_profile(self, username):   
+# 		return get_object_or_404(User, pk=username)
+
+# 	def profile_detail(self, **kwargs):
+# 		context = super(ProfileDetailView, self).get_context_data(**kwargs)
+# 		return context  

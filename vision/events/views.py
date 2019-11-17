@@ -5,9 +5,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, CreateView, DetailView
 from django.db import models
-
-from .models import Event
 from django.contrib.auth.models import User
+from .models import Event
+
 
 
 
@@ -21,8 +21,8 @@ class EventListView(ListView):
 	model = Event
 	template_name = 'events/base.html' # <app> /<model>_<viewtype>.html
 	context_object_name = 'event'
-	# queryset = Event.objects.order_by('-date_published')
-	ordering = ['-start_date']
+	# queryset = Event.objects.order_by('start_date')
+	ordering = ['-date_published']
 
 
 class EventDetailView(DetailView):

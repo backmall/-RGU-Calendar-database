@@ -26,6 +26,12 @@ h1, h2, h3 {
   font-weight: 500;
 }
 
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
 .footer{
   background-color: #823AAF;
   color: #eeeeee;
