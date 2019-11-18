@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact me</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="contact.css"/>
+</head>
+<body>
+        
+    
+    <div class="container">
+        <div class="centered">HAVE A QUESTION?</div>
+        <img src="181107%20RGU%200045_0.jpg" style="width: 100%">
+    </div>
+     
+        <!-- contact me form -->
+    
+    <div class="container">
+        <form action="contact.html">
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">First Name</label>
+                </div>
+            <div class="col-75">
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Last Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="country">Country</label>
+                </div>
+                <div class="col-75">
+                    <select id="country" name="country">
+                            <option value="UK">United Kingdom</option>
+                            <option value="EU">Europe</option>
+                            <option value="world">Elsewhere in the world</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="subject">Subject</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Submit" onclick="alertMessage()">
+            </div>
+        </form>
+    </div>
+    
+    <hr class ="hrclass">
+    
+    <!-- response time graph -->
+    
+    
+        <div class="cl">
+            <ul id="skill2">
+                <h2>RESPONSE TIME</h2>
+                <li><span class="bar2 monday"></span><h3>Monday</h3></li>
+                <li><span class="bar2 tuesday"></span><h3>Tuesday</h3></li>
+                <li><span class="bar2 wednesday"></span><h3>Wednesday</h3></li>
+                <li><span class="bar2 thursday"></span><h3>Thursday</h3></li>
+                <li><span class="bar2 friday"></span><h3>Friday</h3></li>
+                <li><span class="bar2 saturday"></span><h3>Saturday</h3></li>
+                <li><span class="bar2 sunday"></span><h3>Sunday</h3></li>
+            </ul>
+        </div>
+ 
+    
+
+    
+    <!-- MESSAGE ALERT BUTTON-->
+
+    <script>
+        function alertMessage(){
+            alert("Message has been sent");
+        }
+    </script>
+    
+    
+</body>
+</html>
